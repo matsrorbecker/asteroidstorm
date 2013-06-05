@@ -1,7 +1,6 @@
 asteroidstorm
 =============
 
-English:  
 Asteroid Storm is a really simple 2D game used for a Ruby/Gosu tutorial aimed for kids/absolute beginners. The tutorial (in Swedish) can be found here: http://rorbecker.com/spelskola/  
 The asteroid sprite was created by Jonas Wagner.
 
