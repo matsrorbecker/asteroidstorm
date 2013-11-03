@@ -120,6 +120,7 @@ class Asteroid
     @laser = laser
     @hero = hero
     @icon = Gosu::Image.new(@window, "asteroid.png", true)
+    @explosion = Gosu::Sample.new(@window, "explosion.wav")
     @x = @window.width + rand(1000)
     @y = rand(@window.height - @icon.height)
     @speed = rand(3..7)
@@ -137,13 +138,20 @@ class Asteroid
     
     @x = @x - @speed
     
-    if @x < -@icon.width || @hits >= 7
-      @x = @window.width
-      @y = rand(@window.height - @icon.height)
-      @speed = rand(3..7)
-      @hits = 0
-      @hero.add_score
+    if @x < -@icon.width
+      reset_asteroid
+    elsif  @hits >= 7
+      reset_asteroid
+      @explosion.play
     end
+  end
+  
+  def reset_asteroid
+    @x = @window.width
+    @y = rand(@window.height - @icon.height)
+    @speed = rand(3..7)
+    @hits = 0
+    @hero.add_score  
   end
 
   def draw
@@ -158,11 +166,15 @@ class Laser
     @window = window
     @hero = hero
     @icon = Gosu::Image.new(@window, "laser.png", true)
+    @shot = Gosu::Sample.new(@window, "shot.wav")
     laser_home
     @shooting = false
   end
   
   def shoot
+    if @shooting == false
+      @shot.play
+    end
     @shooting = true
   end
   
