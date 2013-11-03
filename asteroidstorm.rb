@@ -122,7 +122,7 @@ class Asteroid
     @icon = Gosu::Image.new(@window, "asteroid.png", true)
     @x = @window.width + rand(1000)
     @y = rand(@window.height - @icon.height)
-    @speed = 3 + rand(5)
+    @speed = rand(3..7)
     @hits = 0
   end  
   
@@ -140,7 +140,7 @@ class Asteroid
     if @x < -@icon.width || @hits >= 7
       @x = @window.width
       @y = rand(@window.height - @icon.height)
-      @speed = 3 + rand(5)
+      @speed = rand(3..7)
       @hits = 0
       @hero.add_score
     end
